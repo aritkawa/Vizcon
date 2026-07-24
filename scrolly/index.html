@@ -863,15 +863,15 @@ const range=$("#rxRange"),out=$("#rxOut"),wrap=$("#rxCards");
 if(!range||!wrap)return;
 const clk=m=>{m=((Math.round(m)%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");};
 const LEVERS=[
+ {t:"Rhythm",off:480,tail:" latest",sub:"Make this your last caffeine",
+  ev:"Caffeine still cuts sleep taken 6–8 hours before bed. Fixing your wake time within \u00b130 min even on weekends steadies your body clock.",
+  data:"Sleeping in only shifts your clock. <b>If you can't add hours, don't move the rhythm.</b>"},
  {t:"Light",off:120,tail:" or so",sub:"Dim the lights, darken the screens",
   ev:"Avoiding bright light from two hours before bed brings melatonin forward and improves how fast and how deep you fall asleep.",
   data:"Japan ranks #3 in commuting. <b>Morning light is plentiful</b> — the problem is light at night."},
  {t:"Bath",off:90,tail:" or so",sub:"Raise core body temperature in the tub",
   ev:"A bath 90 minutes before bed lifts core body temperature; the drop that follows speeds sleep onset and adds deep sleep.",
-  data:"Japan ranks #3 in bathing and grooming. <b>You already bathe more than almost anyone</b> — just time it right and it becomes a weapon."},
- {t:"Rhythm",off:480,tail:" latest",sub:"Make this your last caffeine",
-  ev:"Caffeine still cuts sleep taken 6–8 hours before bed. Fixing your wake time within \u00b130 min even on weekends steadies your body clock.",
-  data:"Sleeping in only shifts your clock. <b>If you can't add hours, don't move the rhythm.</b>"}
+  data:"Japan ranks #3 in bathing and grooming. <b>You already bathe more than almost anyone</b> — just time it right and it becomes a weapon."}
 ];
 function render(){
   const B=+range.value;
