@@ -1,4 +1,4 @@
-"""
+r"""
 VizCon 2026 - Streamlit ホスティング版
 本体HTML(index_ja.html / index.html)を単一ソースとして配信する薄いラッパー。
 - 本体は外部 data.js を参照するが iframe(srcdoc)内では相対参照が切れるため、
