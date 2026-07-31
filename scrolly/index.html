@@ -81,7 +81,7 @@
   .caption b{color:var(--paper)}
   .note{margin-top:14px;font-size:11.5px;color:#9198ae;max-width:44em}
   .src{margin-top:16px;max-width:44em}
-  .src>summary{font-size:10.5px;letter-spacing:.02em;color:#6f778f;cursor:pointer;list-style:none;text-transform:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+  .src>summary{font-size:10.5px;letter-spacing:.02em;color:#7d859c;cursor:pointer;list-style:none;text-transform:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
   .src>summary::-webkit-details-marker{display:none}
   .src>summary::before{content:"+";display:inline-block;width:.9em;text-align:center;color:var(--muted);font-weight:700}
   .src[open]>summary::before{content:"\2212"}
@@ -165,6 +165,11 @@
   .qq{align-self:flex-end;background:rgba(240,180,69,.12);border:1px solid #4a3d1e;color:var(--amber);padding:8px 14px;border-radius:2px;font-size:13px;max-width:80%}
   .qa{align-self:flex-start;border:1px solid var(--line);border-left:3px solid var(--amber);background:rgba(255,255,255,.02);padding:12px 16px;font-size:13.5px;color:#d6d3c7;border-radius:2px;max-width:92%}
   .qa .rank{color:var(--amber);font-weight:700} .qa b{color:var(--paper)}
+  .qa.thinking{color:#9198ae}
+  .qa .dots i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);margin:0 3px 0 0;opacity:.3;animation:qadot 1.2s infinite}
+  .qa .dots i:nth-child(2){animation-delay:.2s} .qa .dots i:nth-child(3){animation-delay:.4s}
+  @keyframes qadot{0%,70%,100%{opacity:.3}35%{opacity:1}}
+  .qa-row button:disabled,.qa-row input:disabled{opacity:.5;cursor:default}
 
   .ledger{margin-top:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
   .ledger .num{font-family:var(--serif);font-weight:800;font-size:clamp(30px,5.5vw,56px);color:var(--amber);font-variant-numeric:tabular-nums}
@@ -200,7 +205,7 @@
   .teaser{text-align:center;padding-bottom:30px}
   .teaser h2{margin:0 auto}
   .next{display:inline-block;margin-top:24px;font-size:12px;letter-spacing:.3em;color:var(--amber);border:1px solid #4a3d1e;padding:11px 24px;border-radius:2px}
-  footer{padding:52px 0 76px;border-top:1px solid var(--line);font-size:11px;color:#727a92;text-align:center;line-height:1.9}
+  footer{padding:52px 0 76px;border-top:1px solid var(--line);font-size:11px;color:#7d859c;text-align:center;line-height:1.9}
   footer .src-line{max-width:50em;margin:0 auto}
   footer .credit{margin-top:16px;letter-spacing:.06em;color:#9198ae}
   footer .credit b{color:var(--paper);font-weight:700}
@@ -259,20 +264,20 @@
   <p class="prose reveal">Flip the switch below. Most countries shuffle dramatically — plenty of hard-working countries sleep just fine. <b style="color:var(--paper)">Exactly one country stays on top either way.</b> Move the slider to drop yourself into the ranking.</p>
 
   <div class="deck reveal">
-    <div class="toggle" role="tablist">
+    <div class="toggle" role="group" aria-label="Re-sort ranking">
       <button id="btnWork" class="on">Who works most</button>
       <button id="btnSleep">Who sleeps least</button>
     </div>
     <div class="you">
-      <label id="youLab">Your work (per day)</label>
+      <label id="youLab" for="youRange">Your work (per day)</label>
       <input type="range" id="youRange" min="0" max="720" step="15" value="480">
       <output id="youOut"></output>
     </div>
-    <div class="verdict" id="verdict"></div>
+    <div class="verdict" id="verdict" aria-live="polite"></div>
   </div>
 
   <div class="chart reveal" id="chart"></div>
-  <p class="caption" id="caption"></p>
+  <p class="caption" id="caption" aria-live="polite"></p>
   <details class="src"><summary>Sources &amp; notes</summary><p>Minutes per day (ages 15–64, whole population, 7-day average). "Work" averages in weekends and people not in employment, so it reads lower than a full-timer's gut feeling. Source: OECD Time Use Database.</p></details>
 </section>
 
@@ -290,14 +295,14 @@
   <p class="prose reveal">&hellip;That is what the official statistics say. Annual working hours: Japan <b style="color:var(--paper)">1,654</b>, the United States <b style="color:var(--paper)">1,789</b> (2023) &mdash; Japan&rsquo;s year is 135 hours shorter. Was everything above an illusion? No. <b style="color:var(--paper)">The average blends two Japans into one number and dilutes them.</b> The more short-hour workers join the workforce, the lower the average falls &mdash; and the overworked core disappears from view.</p>
   <p class="prose reveal">So stop blending. Count the <b style="color:var(--paper)">share of workers putting in 49+ hours a week</b> &mdash; and the ranking flips back.</p>
   <div class="deck reveal">
-    <div class="toggle" role="tablist">
+    <div class="toggle" role="group" aria-label="Filter by gender">
       <button id="iloBtnT" class="on">All</button>
       <button id="iloBtnM">Men</button>
       <button id="iloBtnF">Women</button>
     </div>
   </div>
   <div class="chart reveal" id="iloChart"></div>
-  <p class="caption" id="iloCap"></p>
+  <p class="caption" id="iloCap" aria-live="polite"></p>
   <p class="prose reveal">One in five working men. For women, a share below America&rsquo;s. What this extreme skew means inside the home &mdash; you will meet this asymmetry again in Act III.</p>
   <details class="src"><summary>Sources &amp; notes</summary><p>Source: ILO (JILPT Databook of International Labour Statistics 2025, Table 6-3). Share of employed persons usually working 49+ hours per week; the 22 countries with 2023 data. Annual working hours: Penn World Table (via Our World in Data, 2023) — a series separate from the OECD time-use diary.</p></details>
 </section>
@@ -325,7 +330,7 @@
       <div class="axis24"><span>0h</span><span>6h</span><span>12h</span><span>18h</span><span>24h</span></div>
     </div>
   </div>
-  <div class="panel reveal" id="a2panel"></div>
+  <div class="panel reveal" id="a2panel" aria-live="polite"></div>
   <div class="chips reveal" id="chips"></div>
   <p class="caption reveal"><b>The hours flow into offices, roads and bathrooms — and are withdrawn from nights, dinner tables and friendships.</b> Which activities top the world, and which sink to the bottom? Touch the bands and buttons to find out for yourself.</p>
   <details class="src"><summary>Sources &amp; notes</summary><p>"Study" = classes and school. "Grooming &amp; care" = bathing, dressing, medical visits. "Housework &amp; care" = all unpaid work (chores, shopping, child &amp; adult care, volunteering). Country totals are normalized to exactly 1,440 minutes to absorb source rounding.</p></details>
@@ -340,7 +345,7 @@
     <select id="vsSelL"></select>
     <label for="vsSel" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Opponent</label>
     <select id="vsSel"></select>
-    <div class="verdict" id="vsHead"></div>
+    <div class="verdict" id="vsHead" aria-live="polite"></div>
   </div>
   <div class="vs reveal">
     <div class="vs-hd"><span id="vsHdL"></span><span></span><span id="vsHdR"></span></div>
@@ -355,11 +360,11 @@
   <p class="prose reveal">Split each national average by gender, and you see who absorbs the deficit. Use the switch to flip between <b style="color:var(--paper)">"Sleep" and "Housework &amp; care"</b> and watch the dots reverse. Touch a row for the exact numbers.</p>
 
   <div class="deck reveal">
-    <div class="toggle">
+    <div class="toggle" role="group" aria-label="Switch metric">
       <button id="btnDbSleep" class="on">Sleep</button>
       <button id="btnDbUnpaid">Housework &amp; care (unpaid)</button>
     </div>
-    <div class="verdict" id="dbFact"></div>
+    <div class="verdict" id="dbFact" aria-live="polite"></div>
   </div>
 
   <div class="db-legend reveal">
@@ -368,7 +373,7 @@
     <span class="srt" id="dbSort"></span>
   </div>
   <div class="slope-box reveal" id="db"></div>
-  <p class="caption reveal" id="dbCap"></p>
+  <p class="caption reveal" id="dbCap" aria-live="polite"></p>
   <details class="src"><summary>Sources &amp; notes</summary><p>Ages 15–64, whole-population average (min/day). Unpaid work = chores, shopping, child &amp; adult care and volunteering combined. Source: OECD Time Use Database.</p></details>
 </section>
 
@@ -414,10 +419,10 @@
     <button class="chip qa-chip">How much does the USA sleep?</button>
   </div>
   <div class="qa-row reveal">
-    <input id="qaIn" placeholder='e.g. "leisure in France" / "which country sleeps least?"'>
+    <input id="qaIn" aria-label="Ask the data a question" placeholder='e.g. "leisure in France" / "which country sleeps least?"'>
     <button id="qaGo">Ask</button>
   </div>
-  <div id="qaLog"></div>
+  <div id="qaLog" aria-live="polite"></div>
 </section>
 
 <section class="wrap">
@@ -425,7 +430,7 @@
   <h2 class="reveal">These photographs were <span class="am c">not all taken in the same year.</span></h2>
   <p class="prose reveal">Time-use surveys are heavy instruments: thousands of people keep a diary of their day in 10-minute slices. Most countries run one only every 10–15 years, each on its own schedule. The 33 countries here are an album of "latest available snapshots", taken somewhere between 1998 and 2019. <b style="color:var(--paper)">Touch a dot</b> to see the country and its survey year.</p>
   <div class="reveal" id="tl" style="margin-top:26px"></div>
-  <p class="caption reveal" id="tlCap" style="min-height:3em"></p>
+  <p class="caption reveal" id="tlCap" aria-live="polite" style="min-height:3em"></p>
   <details class="src"><summary>Sources &amp; notes</summary><p>Japan's snapshot is from 2016 (based on the national Survey on Time Use and Leisure Activities). Diary-based measurement — definitions differ from annual-hours labour statistics.</p></details>
 </section>
 
@@ -839,21 +844,30 @@ function answer(q){
   return `Sorry, I couldn't parse that. Try "country + activity" (work, sleep, commute, housework, leisure…) or "which country has the most / least …?". The chips above work too.`;
 }
 /*QA-CORE-END*/
-const log=$("#qaLog");
+const log=$("#qaLog");let busy=false;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 /* LLM回答用: 全エスケープ後、許可タグ(<b>, <span class="rank">)のみ復元 + Markdown**除去 */
 const sanLLM=s=>esc(String(s).replace(/\*\*/g,"")).replace(/&lt;(\/?)b&gt;/g,"<$1b>").replace(/&lt;span class=&quot;rank&quot;&gt;/g,'<span class="rank">').replace(/&lt;\/span&gt;/g,"</span>");
 
 function push(html,cls){const d=document.createElement("div");d.className=cls;d.innerHTML=html;log.prepend(d);}
 async function ask(q){
-  q=(q||"").trim();if(!q)return;
+  q=(q||"").trim();if(!q||busy)return;
   push(esc(q),"qq");
+  const go=$("#qaGo"),inp=$("#qaIn");
   if(LLM_ENDPOINT){
+    busy=true;go.disabled=true;inp.disabled=true;
+    const think=document.createElement("div");think.className="qa thinking";
+    think.innerHTML='<span class="dots"><i></i><i></i><i></i></span> Thinking…';
+    log.prepend(think);
+    let ok=false;
     try{
       const ac=new AbortController();setTimeout(()=>ac.abort(),6000);
       const r=await fetch(LLM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({q}),signal:ac.signal});
-      if(r.ok){const j=await r.json();push(sanLLM(j.answer),"qa");return;}
+      if(r.ok){const j=await r.json();think.className="qa";think.innerHTML=sanLLM(j.answer);ok=true;}
     }catch(e){/* fallthrough to local */}
+    go.disabled=false;inp.disabled=false;busy=false;
+    if(!ok){think.className="qa";think.innerHTML=answer(q);}
+    return;
   }
   push(answer(q),"qa");
 }

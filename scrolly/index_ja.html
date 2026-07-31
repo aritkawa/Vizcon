@@ -81,7 +81,7 @@
   .caption b{color:var(--paper)}
   .note{margin-top:14px;font-size:11.5px;color:#9198ae;max-width:44em}
   .src{margin-top:16px;max-width:44em}
-  .src>summary{font-size:10.5px;letter-spacing:.02em;color:#6f778f;cursor:pointer;list-style:none;text-transform:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+  .src>summary{font-size:10.5px;letter-spacing:.02em;color:#7d859c;cursor:pointer;list-style:none;text-transform:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
   .src>summary::-webkit-details-marker{display:none}
   .src>summary::before{content:"+";display:inline-block;width:.9em;text-align:center;color:var(--muted);font-weight:700}
   .src[open]>summary::before{content:"\2212"}
@@ -165,6 +165,11 @@
   .qq{align-self:flex-end;background:rgba(240,180,69,.12);border:1px solid #4a3d1e;color:var(--amber);padding:8px 14px;border-radius:2px;font-size:13px;max-width:80%}
   .qa{align-self:flex-start;border:1px solid var(--line);border-left:3px solid var(--amber);background:rgba(255,255,255,.02);padding:12px 16px;font-size:13.5px;color:#d6d3c7;border-radius:2px;max-width:92%}
   .qa .rank{color:var(--amber);font-weight:700} .qa b{color:var(--paper)}
+  .qa.thinking{color:#9198ae}
+  .qa .dots i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);margin:0 3px 0 0;opacity:.3;animation:qadot 1.2s infinite}
+  .qa .dots i:nth-child(2){animation-delay:.2s} .qa .dots i:nth-child(3){animation-delay:.4s}
+  @keyframes qadot{0%,70%,100%{opacity:.3}35%{opacity:1}}
+  .qa-row button:disabled,.qa-row input:disabled{opacity:.5;cursor:default}
 
   .ledger{margin-top:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
   .ledger .num{font-family:var(--serif);font-weight:800;font-size:clamp(30px,5.5vw,56px);color:var(--amber);font-variant-numeric:tabular-nums}
@@ -200,7 +205,7 @@
   .teaser{text-align:center;padding-bottom:30px}
   .teaser h2{margin:0 auto}
   .next{display:inline-block;margin-top:24px;font-size:12px;letter-spacing:.3em;color:var(--amber);border:1px solid #4a3d1e;padding:11px 24px;border-radius:2px}
-  footer{padding:52px 0 76px;border-top:1px solid var(--line);font-size:11px;color:#727a92;text-align:center;line-height:1.9}
+  footer{padding:52px 0 76px;border-top:1px solid var(--line);font-size:11px;color:#7d859c;text-align:center;line-height:1.9}
   footer .src-line{max-width:50em;margin:0 auto}
   footer .credit{margin-top:16px;letter-spacing:.06em;color:#9198ae}
   footer .credit b{color:var(--paper);font-weight:700}
@@ -259,20 +264,20 @@
   <p class="prose reveal">下のスイッチで並べ替えてみてください。ほとんどの国は順位が大きく入れ替わります — よく働く国が、よく眠っていたりする。<b style="color:var(--paper)">1カ国だけ、どちらでも頂点に居座る国があります。</b>スライダーで自分の時間を入れると「あなた」も参戦します。</p>
 
   <div class="deck reveal">
-    <div class="toggle" role="tablist">
+    <div class="toggle" role="group" aria-label="ランキングの並び替え">
       <button id="btnWork" class="on">働いている順</button>
       <button id="btnSleep">眠っていない順</button>
     </div>
     <div class="you">
-      <label id="youLab">あなたの仕事(1日)</label>
+      <label id="youLab" for="youRange">あなたの仕事(1日)</label>
       <input type="range" id="youRange" min="0" max="720" step="15" value="480">
       <output id="youOut"></output>
     </div>
-    <div class="verdict" id="verdict"></div>
+    <div class="verdict" id="verdict" aria-live="polite"></div>
   </div>
 
   <div class="chart reveal" id="chart"></div>
-  <p class="caption" id="caption"></p>
+  <p class="caption" id="caption" aria-live="polite"></p>
   <details class="src"><summary>出典・注記</summary><p>1日あたりの分数(15〜64歳・全人口・週7日平均)。仕事には休日や働いていない人も含めて平均するため、フルタイム勤務の体感より小さく出ます。出典: OECD Time Use Database。</p></details>
 </section>
 
@@ -290,14 +295,14 @@
   <p class="prose reveal">…公式統計は、そう言います。年間労働時間は日本 <b style="color:var(--paper)">1,654時間</b>、アメリカ <b style="color:var(--paper)">1,789時間</b>(2023年) — 日本のほうが135時間も短い。ここまでの話は幻だったのでしょうか。いいえ。<b style="color:var(--paper)">平均という数字が、二つの日本を混ぜて薄めている</b>のです。短時間で働く人が増えるほど平均は下がり、働きすぎの中核は見えなくなる。</p>
   <p class="prose reveal">では、混ぜるのをやめましょう。<b style="color:var(--paper)">週49時間以上働く人の割合</b>を数え直すと — 順位は反転します。</p>
   <div class="deck reveal">
-    <div class="toggle" role="tablist">
+    <div class="toggle" role="group" aria-label="性別で絞り込み">
       <button id="iloBtnT" class="on">男女計</button>
       <button id="iloBtnM">男性</button>
       <button id="iloBtnF">女性</button>
     </div>
   </div>
   <div class="chart reveal" id="iloChart"></div>
-  <p class="caption" id="iloCap"></p>
+  <p class="caption" id="iloCap" aria-live="polite"></p>
   <p class="prose reveal">男性は5人に1人が週49時間以上。女性はアメリカをすら下回る。この極端な偏りが家庭の中で何を意味するのか — 第三幕で、もう一度この非対称に出会うことになります。</p>
   <details class="src"><summary>出典・注記</summary><p>出典: ILO(JILPT データブック国際労働比較2025・第6-3表)。就業者のうち週49時間以上働く人の割合。2023年にデータのある22カ国。年間労働時間は Penn World Table(Our World in Data 経由, 2023年)——生活時間調査(OECD)とは別系列。</p></details>
 </section>
@@ -325,7 +330,7 @@
       <div class="axis24"><span>0時間</span><span>6時間</span><span>12時間</span><span>18時間</span><span>24時間</span></div>
     </div>
   </div>
-  <div class="panel reveal" id="a2panel"></div>
+  <div class="panel reveal" id="a2panel" aria-live="polite"></div>
   <div class="chips reveal" id="chips"></div>
   <p class="caption reveal"><b>時間は会社と道路と洗面所に流れ込み、夜と食卓と友人から引き落とされていく。</b>どの活動が世界の頂点に立ち、どれが最下位に沈むのか — その顔ぶれは、帯とボタンに触れればすぐに分かります。</p>
   <details class="src"><summary>出典・注記</summary><p>「学び」は授業・学校、「身支度・ケア」は入浴・身支度・通院など、「家事・育児」は無償労働全般(家事・買い物・育児・介護・ボランティア)。出典の端数を吸収するため各国とも合計がちょうど1440分になるよう正規化しています。</p></details>
@@ -340,7 +345,7 @@
     <select id="vsSelL"></select>
     <label for="vsSel" style="font-size:12px;color:var(--muted);letter-spacing:.08em">対戦相手</label>
     <select id="vsSel"></select>
-    <div class="verdict" id="vsHead"></div>
+    <div class="verdict" id="vsHead" aria-live="polite"></div>
   </div>
   <div class="vs reveal">
     <div class="vs-hd"><span id="vsHdL"></span><span></span><span id="vsHdR"></span></div>
@@ -355,11 +360,11 @@
   <p class="prose reveal">国の平均を男女に割ると、不足を引き受けているのが誰なのかが見えてきます。スイッチで<b style="color:var(--paper)">「睡眠」と「家事・育児」を切り替えて</b>、点の並びがどう反転するか見てください。行に触れると数字が出ます。</p>
 
   <div class="deck reveal">
-    <div class="toggle">
+    <div class="toggle" role="group" aria-label="指標の切り替え">
       <button id="btnDbSleep" class="on">睡眠時間</button>
       <button id="btnDbUnpaid">家事・育児(無償)</button>
     </div>
-    <div class="verdict" id="dbFact"></div>
+    <div class="verdict" id="dbFact" aria-live="polite"></div>
   </div>
 
   <div class="db-legend reveal">
@@ -368,7 +373,7 @@
     <span class="srt" id="dbSort"></span>
   </div>
   <div class="slope-box reveal" id="db"></div>
-  <p class="caption reveal" id="dbCap"></p>
+  <p class="caption reveal" id="dbCap" aria-live="polite"></p>
   <details class="src"><summary>出典・注記</summary><p>15〜64歳・全人口平均(分/日)。無償労働=家事・買い物・育児・介護・ボランティアの合計。出典: OECD Time Use Database。</p></details>
 </section>
 
@@ -414,10 +419,10 @@
     <button class="chip qa-chip">アメリカの睡眠は?</button>
   </div>
   <div class="qa-row reveal">
-    <input id="qaIn" placeholder="例: フランスの余暇は? / 睡眠が短い国は?">
+    <input id="qaIn" aria-label="データに質問を入力" placeholder="例: フランスの余暇は? / 睡眠が短い国は?">
     <button id="qaGo">聞く</button>
   </div>
-  <div id="qaLog"></div>
+  <div id="qaLog" aria-live="polite"></div>
 </section>
 
 <section class="wrap">
@@ -425,7 +430,7 @@
   <h2 class="reveal">これは、<span class="am c">同じ年の写真</span>ではありません。</h2>
   <p class="prose reveal">生活時間調査は、数千〜数万人に1日の行動を10分刻みの日記で記録してもらう、とても重い調査です。どの国も実施は10〜15年に1回ほどで、撮影のタイミングもバラバラ。この作品の33カ国は、1998〜2019年のどこかで撮られた「各国の最新の1枚」を並べたアルバムです。<b style="color:var(--paper)">点に触れる</b>と国名と調査年が出ます。</p>
   <div class="reveal" id="tl" style="margin-top:26px"></div>
-  <p class="caption reveal" id="tlCap" style="min-height:3em"></p>
+  <p class="caption reveal" id="tlCap" aria-live="polite" style="min-height:3em"></p>
   <details class="src"><summary>出典・注記</summary><p>日本は2016年(総務省「社会生活基本調査」ベース)。日記式の測定のため、年間総労働時間などの労働統計とは定義が異なります。</p></details>
 </section>
 
@@ -839,21 +844,30 @@ function answer(q){
   return `うまく読み取れませんでした。「国名 + 項目(仕事・睡眠・通勤・家事・余暇…)」か「〜が一番多い/少ない国は?」の形なら答えられます。上のチップも試してみてください。`;
 }
 /*QA-CORE-END*/
-const log=$("#qaLog");
+const log=$("#qaLog");let busy=false;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 /* LLM回答用: 全エスケープ後、許可タグ(<b>, <span class="rank">)のみ復元 + Markdown**除去 */
 const sanLLM=s=>esc(String(s).replace(/\*\*/g,"")).replace(/&lt;(\/?)b&gt;/g,"<$1b>").replace(/&lt;span class=&quot;rank&quot;&gt;/g,'<span class="rank">').replace(/&lt;\/span&gt;/g,"</span>");
 
 function push(html,cls){const d=document.createElement("div");d.className=cls;d.innerHTML=html;log.prepend(d);}
 async function ask(q){
-  q=(q||"").trim();if(!q)return;
+  q=(q||"").trim();if(!q||busy)return;
   push(esc(q),"qq");
+  const go=$("#qaGo"),inp=$("#qaIn");
   if(LLM_ENDPOINT){
+    busy=true;go.disabled=true;inp.disabled=true;
+    const think=document.createElement("div");think.className="qa thinking";
+    think.innerHTML='<span class="dots"><i></i><i></i><i></i></span> 考えています…';
+    log.prepend(think);
+    let ok=false;
     try{
       const ac=new AbortController();setTimeout(()=>ac.abort(),6000);
       const r=await fetch(LLM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({q}),signal:ac.signal});
-      if(r.ok){const j=await r.json();push(sanLLM(j.answer),"qa");return;}
+      if(r.ok){const j=await r.json();think.className="qa";think.innerHTML=sanLLM(j.answer);ok=true;}
     }catch(e){/* fallthrough to local */}
+    go.disabled=false;inp.disabled=false;busy=false;
+    if(!ok){think.className="qa";think.innerHTML=answer(q);}
+    return;
   }
   push(answer(q),"qa");
 }
