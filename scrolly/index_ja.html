@@ -46,7 +46,7 @@
   section{padding:clamp(64px,10vh,110px) 0}
   .kicker{font-size:12px;letter-spacing:.3em;color:var(--muted);margin-bottom:12px}
   h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,4vw,38px);line-height:1.4;max-width:24em}
-  h2 .jp{color:var(--jp)} h2 .am{color:var(--amber)}
+  h2 .jp{color:var(--jp)} h2 .am{color:#fff;font-weight:800} h2 .am.c{color:var(--amber);font-weight:700} h2 .am.u{color:var(--paper);font-weight:700;text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:5px}
   .prose{max-width:38em;margin-top:18px;color:#d6d3c7;font-size:15.5px}
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
   .reveal.in{opacity:1;transform:none}
@@ -178,6 +178,17 @@
   .rxc-ev{font-size:13.5px;line-height:1.75;margin-bottom:10px}
   .rxc-data{font-size:13px;line-height:1.75;color:#d6d3c7;border-top:1px solid var(--line);padding-top:10px}
   .closing span{display:inline-block;margin-top:6px;font-family:var(--sans);font-weight:400;font-size:13px;letter-spacing:.14em;color:var(--muted)}
+  /* finale: break the uniform rhythm — full-bleed chamber, centered, oversized ledger (no glow) */
+  .finale{position:relative;text-align:center;margin-top:clamp(40px,8vh,90px);padding-top:clamp(130px,22vh,240px);padding-bottom:clamp(96px,15vh,170px)}
+  .finale::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:100vw;transform:translateX(-50%);background:#080b16;border-top:1px solid var(--line);border-bottom:1px solid var(--line);z-index:-1}
+  .finale .kicker::before{content:"";display:block;width:1px;height:clamp(40px,8vh,72px);margin:0 auto clamp(26px,5vh,46px);background:linear-gradient(var(--line),transparent)}
+  .finale .kicker{color:var(--muted)}
+  .finale h2{max-width:20em;margin-left:auto;margin-right:auto}
+  .finale .prose{max-width:34em;margin-left:auto;margin-right:auto}
+  .finale .ledger{border:0;margin-top:clamp(44px,8vh,80px);gap:clamp(18px,4vw,52px)}
+  .finale .ledger .num{font-size:clamp(52px,11vw,132px);line-height:1}
+  .finale .ledger .lab{margin-top:14px;font-size:12px}
+  .finale .closing{margin-top:clamp(56px,10vh,96px);font-size:clamp(28px,5vw,52px)}
 
   .teaser{text-align:center;padding-bottom:30px}
   .teaser h2{margin:0 auto}
@@ -265,7 +276,7 @@
 
 <section class="wrap">
   <p class="kicker reveal">反論 · 平均は嘘をつく</p>
-  <h2 class="reveal">「日本人はもう、<span class="am">アメリカ人ほど働いていない</span>」</h2>
+  <h2 class="reveal">「日本人はもう、<span class="am c">アメリカ人ほど働いていない</span>」</h2>
   <p class="prose reveal">…公式統計は、そう言います。年間労働時間は日本 <b style="color:var(--paper)">1,654時間</b>、アメリカ <b style="color:var(--paper)">1,789時間</b>(2023年) — 日本のほうが135時間も短い。ここまでの話は幻だったのでしょうか。いいえ。<b style="color:var(--paper)">平均という数字が、二つの日本を混ぜて薄めている</b>のです。短時間で働く人が増えるほど平均は下がり、働きすぎの中核は見えなくなる。</p>
   <p class="prose reveal">では、混ぜるのをやめましょう。<b style="color:var(--paper)">週49時間以上働く人の割合</b>を数え直すと — 順位は反転します。</p>
   <div class="deck reveal">
@@ -351,9 +362,9 @@
   <p class="note">15〜64歳・全人口平均(分/日)。無償労働=家事・買い物・育児・介護・ボランティアの合計。出典: OECD Time Use Database。</p>
 </section>
 
-<section class="wrap">
+<section class="wrap finale">
   <p class="kicker reveal">終幕 · 49日分の請求書</p>
-  <h2 class="reveal">世界一の労働時間は、<span class="am">世界最短の睡眠</span>で支払われていた。</h2>
+  <h2 class="reveal">世界一の労働時間は、<span class="am c">世界最短の睡眠</span>で支払われていた。</h2>
   <p class="prose reveal">働く時間は世界一。通勤と身支度は世界3位。そのぶん睡眠・家事・友人との時間は世界最下位圏で、不足の負担は家庭の中で均等ではありませんでした。日本の睡眠不足を1年分、束にするとこうなります。</p>
 
   <div class="ledger reveal">
@@ -368,7 +379,7 @@
 
 <section class="wrap">
   <p class="kicker reveal">処方箋 · 時間は増やせない。質は取り戻せる。</p>
-  <h2 class="reveal">削られた夜は、量ではなく<span class="am">&ldquo;質&rdquo;</span>で取り戻す。</h2>
+  <h2 class="reveal">削られた夜は、量ではなく<span class="am u">&ldquo;質&rdquo;</span>で取り戻す。</h2>
   <p class="prose reveal">仕事も家事も、削れない可処分時間は決まっている。<b style="color:var(--paper)">だから狙うのは睡眠の「量」ではなく「質」。</b>同じ7時間でも、深く眠れれば回復は変わる。睡眠研究が繰り返し支持してきた、確実な3つのレバーがあります。就寝の目標時刻を決めるだけで、今夜からの逆算が出ます。</p>
 
   <div class="deck reveal">
@@ -384,7 +395,7 @@
 <section class="wrap">
   <p class="kicker reveal">エピローグ · データに聞く</p>
   <h2 class="reveal">まだ、聞きたいことが<span class="am">残っていませんか。</span></h2>
-  <p class="prose reveal">33カ国 × 9項目 × 男女。ここまで見せたのは日記データのほんの一部です。残りは直接聞いてください — 回答はAIの推測ではなく、<b style="color:var(--paper)">このページ内のデータからその場で計算</b>して返します。</p>
+  <p class="prose reveal">33カ国 × 9項目 × 男女。ここまで見せたのは日記データのほんの一部です。残りは直接聞いてください — <b style="color:var(--paper)">AIがこのページ内のデータだけを根拠に</b>答えます(数字を勝手には作りません)。混み合っているときは、同じデータを内蔵の計算機で集計する定型回答に自動で切り替わります。</p>
   <div class="chips reveal">
     <button class="chip qa-chip">通勤が一番長い国は?</button>
     <button class="chip qa-chip">ドイツと日本を比べて</button>
@@ -401,7 +412,7 @@
 
 <section class="wrap">
   <p class="kicker reveal">付記 · データについて</p>
-  <h2 class="reveal">これは、<span class="am">同じ年の写真</span>ではありません。</h2>
+  <h2 class="reveal">これは、<span class="am c">同じ年の写真</span>ではありません。</h2>
   <p class="prose reveal">生活時間調査は、数千〜数万人に1日の行動を10分刻みの日記で記録してもらう、とても重い調査です。どの国も実施は10〜15年に1回ほどで、撮影のタイミングもバラバラ。この作品の33カ国は、1998〜2019年のどこかで撮られた「各国の最新の1枚」を並べたアルバムです。<b style="color:var(--paper)">点に触れる</b>と国名と調査年が出ます。</p>
   <div class="reveal" id="tl" style="margin-top:26px"></div>
   <p class="caption reveal" id="tlCap" style="min-height:3em"></p>

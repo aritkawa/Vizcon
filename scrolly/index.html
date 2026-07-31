@@ -46,7 +46,7 @@
   section{padding:clamp(64px,10vh,110px) 0}
   .kicker{font-size:12px;letter-spacing:.3em;color:var(--muted);margin-bottom:12px}
   h2{font-family:var(--serif);font-weight:700;font-size:clamp(24px,4vw,38px);line-height:1.4;max-width:24em}
-  h2 .jp{color:var(--jp)} h2 .am{color:var(--amber)}
+  h2 .jp{color:var(--jp)} h2 .am{color:#fff;font-weight:800} h2 .am.c{color:var(--amber);font-weight:700} h2 .am.u{color:var(--paper);font-weight:700;text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:5px}
   .prose{max-width:38em;margin-top:18px;color:#d6d3c7;font-size:15.5px}
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
   .reveal.in{opacity:1;transform:none}
@@ -178,6 +178,17 @@
   .rxc-ev{font-size:13.5px;line-height:1.75;margin-bottom:10px}
   .rxc-data{font-size:13px;line-height:1.75;color:#d6d3c7;border-top:1px solid var(--line);padding-top:10px}
   .closing span{display:inline-block;margin-top:6px;font-family:var(--sans);font-weight:400;font-size:13px;letter-spacing:.14em;color:var(--muted)}
+  /* finale: break the uniform rhythm — full-bleed chamber, centered, oversized ledger (no glow) */
+  .finale{position:relative;text-align:center;margin-top:clamp(40px,8vh,90px);padding-top:clamp(130px,22vh,240px);padding-bottom:clamp(96px,15vh,170px)}
+  .finale::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:100vw;transform:translateX(-50%);background:#080b16;border-top:1px solid var(--line);border-bottom:1px solid var(--line);z-index:-1}
+  .finale .kicker::before{content:"";display:block;width:1px;height:clamp(40px,8vh,72px);margin:0 auto clamp(26px,5vh,46px);background:linear-gradient(var(--line),transparent)}
+  .finale .kicker{color:var(--muted)}
+  .finale h2{max-width:20em;margin-left:auto;margin-right:auto}
+  .finale .prose{max-width:34em;margin-left:auto;margin-right:auto}
+  .finale .ledger{border:0;margin-top:clamp(44px,8vh,80px);gap:clamp(18px,4vw,52px)}
+  .finale .ledger .num{font-size:clamp(52px,11vw,132px);line-height:1}
+  .finale .ledger .lab{margin-top:14px;font-size:12px}
+  .finale .closing{margin-top:clamp(56px,10vh,96px);font-size:clamp(28px,5vw,52px)}
 
   .teaser{text-align:center;padding-bottom:30px}
   .teaser h2{margin:0 auto}
@@ -265,7 +276,7 @@
 
 <section class="wrap">
   <p class="kicker reveal">REBUTTAL · THE AVERAGE LIES</p>
-  <h2 class="reveal">&ldquo;The Japanese don&rsquo;t work more than <span class="am">Americans</span> anymore.&rdquo;</h2>
+  <h2 class="reveal">&ldquo;The Japanese don&rsquo;t work more than <span class="am c">Americans</span> anymore.&rdquo;</h2>
   <p class="prose reveal">&hellip;That is what the official statistics say. Annual working hours: Japan <b style="color:var(--paper)">1,654</b>, the United States <b style="color:var(--paper)">1,789</b> (2023) &mdash; Japan&rsquo;s year is 135 hours shorter. Was everything above an illusion? No. <b style="color:var(--paper)">The average blends two Japans into one number and dilutes them.</b> The more short-hour workers join the workforce, the lower the average falls &mdash; and the overworked core disappears from view.</p>
   <p class="prose reveal">So stop blending. Count the <b style="color:var(--paper)">share of workers putting in 49+ hours a week</b> &mdash; and the ranking flips back.</p>
   <div class="deck reveal">
@@ -351,9 +362,9 @@
   <p class="note">Ages 15–64, whole-population average (min/day). Unpaid work = chores, shopping, child &amp; adult care and volunteering combined. Source: OECD Time Use Database.</p>
 </section>
 
-<section class="wrap">
+<section class="wrap finale">
   <p class="kicker reveal">FINALE · A 49-DAY INVOICE</p>
-  <h2 class="reveal">The world&rsquo;s longest work hours were paid for with <span class="am">the world&rsquo;s shortest sleep</span>.</h2>
+  <h2 class="reveal">The world&rsquo;s longest work hours were paid for with <span class="am c">the world&rsquo;s shortest sleep</span>.</h2>
   <p class="prose reveal">#1 in work. #3 in commuting and grooming. In exchange, sleep, housework and time with friends sit at the very bottom of the world — and the shortfall is not shared evenly at home. Bundle one year of Japan's sleep deficit and this is what it looks like.</p>
 
   <div class="ledger reveal">
@@ -368,7 +379,7 @@
 
 <section class="wrap">
   <p class="kicker reveal">PRESCRIPTION · YOU CAN'T BUY TIME. YOU CAN RECLAIM QUALITY.</p>
-  <h2 class="reveal">Win back the stolen night with <span class="am">quality, not quantity</span>.</h2>
+  <h2 class="reveal">Win back the stolen night with <span class="am u">quality, not quantity</span>.</h2>
   <p class="prose reveal">Work and chores fix how much time you can spare. <b style="color:var(--paper)">So aim not at the quantity of sleep, but at its quality.</b> The same seven hours recover you differently if they run deep. Sleep science keeps backing three reliable levers. Set one target bedtime, and the countdown for tonight appears.</p>
 
   <div class="deck reveal">
@@ -384,7 +395,7 @@
 <section class="wrap">
   <p class="kicker reveal">EPILOGUE · ASK THE DATA</p>
   <h2 class="reveal">Still have a question <span class="am">left over?</span></h2>
-  <p class="prose reveal">33 countries × 9 activities × 2 genders. What you've seen is a fraction of the diary data. Ask for the rest directly — the answers are not AI guesses; they are <b style="color:var(--paper)">computed on the spot from the data inside this page</b>.</p>
+  <p class="prose reveal">33 countries × 9 activities × 2 genders. What you've seen is a fraction of the diary data. Ask for the rest directly — <b style="color:var(--paper)">an AI answers, grounded only in the data on this page</b> (it won't invent numbers). When it's busy, it falls back to a built-in calculator that returns the same answers offline.</p>
   <div class="chips reveal">
     <button class="chip qa-chip">Which country commutes the most?</button>
     <button class="chip qa-chip">Compare Germany and Japan</button>
@@ -401,7 +412,7 @@
 
 <section class="wrap">
   <p class="kicker reveal">APPENDIX · ABOUT THE DATA</p>
-  <h2 class="reveal">These photographs were <span class="am">not all taken in the same year.</span></h2>
+  <h2 class="reveal">These photographs were <span class="am c">not all taken in the same year.</span></h2>
   <p class="prose reveal">Time-use surveys are heavy instruments: thousands of people keep a diary of their day in 10-minute slices. Most countries run one only every 10–15 years, each on its own schedule. The 33 countries here are an album of "latest available snapshots", taken somewhere between 1998 and 2019. <b style="color:var(--paper)">Touch a dot</b> to see the country and its survey year.</p>
   <div class="reveal" id="tl" style="margin-top:26px"></div>
   <p class="caption reveal" id="tlCap" style="min-height:3em"></p>
