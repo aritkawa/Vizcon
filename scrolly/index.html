@@ -81,7 +81,7 @@
   .caption b{color:var(--paper)}
   .note{margin-top:14px;font-size:11.5px;color:#9198ae;max-width:44em}
   .src{margin-top:16px;max-width:44em}
-  .src>summary{font-size:11px;letter-spacing:.09em;color:#9198ae;cursor:pointer;list-style:none;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+  .src>summary{font-size:10.5px;letter-spacing:.02em;color:#6f778f;cursor:pointer;list-style:none;text-transform:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
   .src>summary::-webkit-details-marker{display:none}
   .src>summary::before{content:"+";display:inline-block;width:.9em;text-align:center;color:var(--muted);font-weight:700}
   .src[open]>summary::before{content:"\2212"}
@@ -200,7 +200,10 @@
   .teaser{text-align:center;padding-bottom:30px}
   .teaser h2{margin:0 auto}
   .next{display:inline-block;margin-top:24px;font-size:12px;letter-spacing:.3em;color:var(--amber);border:1px solid #4a3d1e;padding:11px 24px;border-radius:2px}
-  footer{padding:40px 0 60px;border-top:1px solid var(--line);font-size:11.5px;color:#9198ae}
+  footer{padding:52px 0 76px;border-top:1px solid var(--line);font-size:11px;color:#727a92;text-align:center;line-height:1.9}
+  footer .src-line{max-width:50em;margin:0 auto}
+  footer .credit{margin-top:16px;letter-spacing:.06em;color:#9198ae}
+  footer .credit b{color:var(--paper);font-weight:700}
   .lang{position:fixed;top:18px;right:18px;z-index:10;font-size:11px;letter-spacing:.15em}
   .lang a{color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:6px 12px;border-radius:2px;background:rgba(12,17,34,.7)}
   .lang a:hover{color:var(--amber);border-color:var(--amber)}
@@ -427,9 +430,8 @@
 </section>
 
 <footer class="wrap">
-  Data: OECD Time Use Database / OECD Gender Data Portal "Time use across the world" (surveys 1998–2019, ages 15–64).
-  Diary-based measurement — definitions differ from annual-hours labour statistics (methodology: see the appendix above).
-  An Amazon Viz Con 2026 entry / built with a GenAI-assisted workflow (documented).
+  <p class="src-line">Data: OECD Time Use Database / OECD Gender Data Portal "Time use across the world" (surveys 1998–2019, ages 15–64). Diary-based measurement — definitions differ from annual-hours labour statistics.</p>
+  <p class="credit">An <b>Amazon Viz Con 2026</b> entry · built with a GenAI-assisted workflow (documented)</p>
 </footer>
 
 <script src="data.js"></script>
