@@ -80,6 +80,13 @@
   .caption{margin-top:18px;font-size:12.5px;color:var(--muted);max-width:44em}
   .caption b{color:var(--paper)}
   .note{margin-top:14px;font-size:11.5px;color:#9198ae;max-width:44em}
+  .src{margin-top:16px;max-width:44em}
+  .src>summary{font-size:11px;letter-spacing:.09em;color:#9198ae;cursor:pointer;list-style:none;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+  .src>summary::-webkit-details-marker{display:none}
+  .src>summary::before{content:"+";display:inline-block;width:.9em;text-align:center;color:var(--muted);font-weight:700}
+  .src[open]>summary::before{content:"\2212"}
+  .src>summary:hover{color:var(--paper)}
+  .src>p{margin-top:10px;font-size:11.5px;color:#9198ae;line-height:1.7;max-width:44em}
 
   /* slope */
   .slope-box{margin-top:40px}
@@ -263,7 +270,7 @@
 
   <div class="chart reveal" id="chart"></div>
   <p class="caption" id="caption"></p>
-  <p class="note">Minutes per day (ages 15–64, whole population, 7-day average). "Work" averages in weekends and people not in employment, so it reads lower than a full-timer's gut feeling. Source: OECD Time Use Database.</p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Minutes per day (ages 15–64, whole population, 7-day average). "Work" averages in weekends and people not in employment, so it reads lower than a full-timer's gut feeling. Source: OECD Time Use Database.</p></details>
 </section>
 
 <section class="wrap">
@@ -289,7 +296,7 @@
   <div class="chart reveal" id="iloChart"></div>
   <p class="caption" id="iloCap"></p>
   <p class="prose reveal">One in five working men. For women, a share below America&rsquo;s. What this extreme skew means inside the home &mdash; you will meet this asymmetry again in Act III.</p>
-  <p class="note">Source: ILO (JILPT Databook of International Labour Statistics 2025, Table 6-3). Share of employed persons usually working 49+ hours per week; the 22 countries with 2023 data. Annual working hours: Penn World Table (via Our World in Data, 2023) — a series separate from the OECD time-use diary.</p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Source: ILO (JILPT Databook of International Labour Statistics 2025, Table 6-3). Share of employed persons usually working 49+ hours per week; the 22 countries with 2023 data. Annual working hours: Penn World Table (via Our World in Data, 2023) — a series separate from the OECD time-use diary.</p></details>
 </section>
 
 <section class="wrap">
@@ -317,8 +324,8 @@
   </div>
   <div class="panel reveal" id="a2panel"></div>
   <div class="chips reveal" id="chips"></div>
-  <p class="caption reveal">What pushes Japan to the top of the world: <b>work (#1), commuting (#3), grooming &amp; bathing (#3)</b>. What sits at the very bottom: <b>sleep (#33), housework &amp; care (#33), time with friends (#33)</b>. Sports? #30. Even television: #30. The hours flow into offices, roads and bathrooms — and are withdrawn from nights, dinner tables and friendships.</p>
-  <p class="note">"Study" = classes and school. "Grooming &amp; care" = bathing, dressing, medical visits. "Housework &amp; care" = all unpaid work (chores, shopping, child &amp; adult care, volunteering). Country totals are normalized to exactly 1,440 minutes to absorb source rounding.</p>
+  <p class="caption reveal"><b>The hours flow into offices, roads and bathrooms — and are withdrawn from nights, dinner tables and friendships.</b> Which activities top the world, and which sink to the bottom? Touch the bands and buttons to find out for yourself.</p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>"Study" = classes and school. "Grooming &amp; care" = bathing, dressing, medical visits. "Housework &amp; care" = all unpaid work (chores, shopping, child &amp; adult care, volunteering). Country totals are normalized to exactly 1,440 minutes to absorb source rounding.</p></details>
 </section>
 
 <section class="wrap">
@@ -359,7 +366,7 @@
   </div>
   <div class="slope-box reveal" id="db"></div>
   <p class="caption reveal" id="dbCap"></p>
-  <p class="note">Ages 15–64, whole-population average (min/day). Unpaid work = chores, shopping, child &amp; adult care and volunteering combined. Source: OECD Time Use Database.</p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Ages 15–64, whole-population average (min/day). Unpaid work = chores, shopping, child &amp; adult care and volunteering combined. Source: OECD Time Use Database.</p></details>
 </section>
 
 <section class="wrap finale">
@@ -389,7 +396,7 @@
   </div>
 
   <div class="rx reveal" id="rxCards"></div>
-  <p class="note">Sources: widely supported findings in sleep science (circadian light entrainment / pre-sleep bathing and core body temperature: Haghayegh et al. 2019 systematic meta-analysis / caffeine and sleep: Drake et al. 2013). Times are countdown guides; the optimum varies by individual.</p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Sources: widely supported findings in sleep science (circadian light entrainment / pre-sleep bathing and core body temperature: Haghayegh et al. 2019 systematic meta-analysis / caffeine and sleep: Drake et al. 2013). Times are countdown guides; the optimum varies by individual.</p></details>
 </section>
 
 <section class="wrap">
@@ -416,7 +423,7 @@
   <p class="prose reveal">Time-use surveys are heavy instruments: thousands of people keep a diary of their day in 10-minute slices. Most countries run one only every 10–15 years, each on its own schedule. The 33 countries here are an album of "latest available snapshots", taken somewhere between 1998 and 2019. <b style="color:var(--paper)">Touch a dot</b> to see the country and its survey year.</p>
   <div class="reveal" id="tl" style="margin-top:26px"></div>
   <p class="caption reveal" id="tlCap" style="min-height:3em"></p>
-  <p class="note">Japan's snapshot is from 2016 (based on the national Survey on Time Use and Leisure Activities). Diary-based measurement — definitions differ from annual-hours labour statistics.</p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Japan's snapshot is from 2016 (based on the national Survey on Time Use and Leisure Activities). Diary-based measurement — definitions differ from annual-hours labour statistics.</p></details>
 </section>
 
 <footer class="wrap">
