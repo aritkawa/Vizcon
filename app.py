@@ -46,7 +46,7 @@ st.markdown(
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 SCROLLY = os.path.join(BASE, "scrolly")
-HTML_FILES = {"日本語": "index_ja.html", "English": "index.html"}
+HTML_FILES = {"English": "index.html", "日本語": "index_ja.html"}  # English first = default (judges are English speakers)
 
 
 def load_html(fname):
