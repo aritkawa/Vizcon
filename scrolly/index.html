@@ -418,7 +418,7 @@
   </div>
 
   <p class="inv-reflect reveal" id="invReflect" aria-live="polite"></p>
-  <details class="src"><summary>Sources &amp; notes</summary><p>Computed against the OECD average sleep of 508 min/day. Working-day conversion = annual shortfall hours &divide; 8 hours (the same formula as Japan&rsquo;s average in the finale). Rank places you among the 33 countries in this piece &mdash; 34 in all. Because time-use surveys are diary-based, national averages run longer than self-reported &ldquo;clock-time&rdquo; sleep.</p></details>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Computed against the OECD average sleep of 508 min/day. Working-day conversion = annual shortfall hours &divide; 8 hours (the same formula as Japan&rsquo;s average in the finale). Because time-use surveys are diary-based, national averages run longer than self-reported &ldquo;clock-time&rdquo; sleep.</p></details>
 </section>
 
 <section class="wrap">
@@ -963,17 +963,16 @@ render();
     const d=Math.round(AVG-you);
     const annualH=Math.round(Math.max(0,AVG-you)*365/60);
     const invoiceDays=Math.round(Math.max(0,AVG-you)*365/60/8);
-    const rankPos=DATA.filter(x=>x.sleep>you).length+1;
     const vsJapan=Math.round(you-JPN);
-    return {you,d,annualH,invoiceDays,rankPos,vsJapan};
+    return {you,d,annualH,invoiceDays,vsJapan};
   }
   function tmpl(f){
     if(f.d<=0)
-      return `You sleep <b>${hm(f.you)}</b> a night. You clear the OECD average &mdash; in the country with the world&#39;s longest work hours, that alone is a quiet achievement. Ranked among 33 countries: <span class="rank">#${f.rankPos} of ${total}</span>. No invoice is coming.`;
+      return `You sleep <b>${hm(f.you)}</b> a night. You clear the OECD average &mdash; in the country with the world&#39;s longest work hours, that alone is a quiet achievement. No invoice is coming.`;
     const tail=f.vsJapan<0
       ? `a night even shorter than Japan (${hm(JPN)}), the world&#39;s shortest, by ${Math.abs(f.vsJapan)} min`
       : `longer than Japan, but still ${f.d} min short of the OECD average`;
-    return `You sleep <b>${hm(f.you)}</b> a night. That is <b>${f.d} min</b> below the OECD average, and about <b>${f.invoiceDays} working days</b> of sleep vanish every year. Ranked among 33 countries: <span class="rank">#${f.rankPos} of ${total}</span> &mdash; ${tail}. The prescription targets exactly this shortfall.`;
+    return `You sleep <b>${hm(f.you)}</b> a night. That is <b>${f.d} min</b> below the OECD average, and about <b>${f.invoiceDays} working days</b> of sleep vanish every year &mdash; ${tail}. The prescription targets exactly this shortfall.`;
   }
   function renderInstant(f){
     out.textContent=hm(f.you);
@@ -992,7 +991,7 @@ render();
       try{
         const ac=new AbortController();setTimeout(()=>ac.abort(),6000);
         const r=await fetch(LLM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({mode:"invoice",lang:"en",figures:{sleepMin:f.you,deficitMin:f.d,annualHours:f.annualH,invoiceDays:f.invoiceDays,rankPos:f.rankPos,total,vsJapan:f.vsJapan}}),signal:ac.signal});
+          body:JSON.stringify({mode:"invoice",lang:"en",figures:{sleepMin:f.you,deficitMin:f.d,annualHours:f.annualH,invoiceDays:f.invoiceDays,vsJapan:f.vsJapan}}),signal:ac.signal});
         if(my!==reqId)return;
         if(r.ok){const j=await r.json();if(my===reqId&&j&&j.answer&&/[0-9]/.test(j.answer))reflect.innerHTML=sanLLM(j.answer);}
       }catch(e){/* keep template */}

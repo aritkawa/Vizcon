@@ -418,7 +418,7 @@
   </div>
 
   <p class="inv-reflect reveal" id="invReflect" aria-live="polite"></p>
-  <details class="src"><summary>出典・注記</summary><p>OECD平均睡眠 508分/日を基準に算出。労働日換算=年間不足時間÷8時間(終幕の日本平均と同じ換算式)。順位は本作33カ国の睡眠時間にあなたを加えた34の並び。生活時間調査は日記式のため、各国平均は自己申告の「時計上の睡眠」より長く出ます。</p></details>
+  <details class="src"><summary>出典・注記</summary><p>OECD平均睡眠 508分/日を基準に算出。労働日換算=年間不足時間÷8時間(終幕の日本平均と同じ換算式)。生活時間調査は日記式のため、各国平均は自己申告の「時計上の睡眠」より長く出ます。</p></details>
 </section>
 
 <section class="wrap">
@@ -963,17 +963,16 @@ render();
     const d=Math.round(AVG-you);
     const annualH=Math.round(Math.max(0,AVG-you)*365/60);
     const invoiceDays=Math.round(Math.max(0,AVG-you)*365/60/8);
-    const rankPos=DATA.filter(x=>x.sleep>you).length+1;
     const vsJapan=Math.round(you-JPN);
-    return {you,d,annualH,invoiceDays,rankPos,vsJapan};
+    return {you,d,annualH,invoiceDays,vsJapan};
   }
   function tmpl(f){
     if(f.d<=0)
-      return `あなたは1日 <b>${hm(f.you)}</b>。OECD平均を上回って眠れています——世界一の労働時間の国では、それ自体が静かな達成です。33カ国に並べると <span class="rank">${f.rankPos}位/${total}</span>。届く請求書は、ありません。`;
+      return `あなたは1日 <b>${hm(f.you)}</b>。OECD平均を上回って眠れています——世界一の労働時間の国では、それ自体が静かな達成です。届く請求書は、ありません。`;
     const tail=f.vsJapan<0
       ? `世界最短の日本(${hm(JPN)})より、さらに ${Math.abs(f.vsJapan)}分 短い夜です`
       : `日本よりは長いものの、OECD平均には ${f.d}分 届きません`;
-    return `あなたは1日 <b>${hm(f.you)}</b>。OECD平均より <b>${f.d}分</b> 短く、1年で約 <b>${f.invoiceDays}労働日</b> ぶんの睡眠が消えていきます。33カ国に並べると <span class="rank">${f.rankPos}位/${total}</span>——${tail}。処方箋は、まさにこの不足に効きます。`;
+    return `あなたは1日 <b>${hm(f.you)}</b>。OECD平均より <b>${f.d}分</b> 短く、1年で約 <b>${f.invoiceDays}労働日</b> ぶんの睡眠が消えていきます——${tail}。処方箋は、まさにこの不足に効きます。`;
   }
   function renderInstant(f){
     out.textContent=hm(f.you);
@@ -992,7 +991,7 @@ render();
       try{
         const ac=new AbortController();setTimeout(()=>ac.abort(),6000);
         const r=await fetch(LLM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({mode:"invoice",lang:"ja",figures:{sleepMin:f.you,deficitMin:f.d,annualHours:f.annualH,invoiceDays:f.invoiceDays,rankPos:f.rankPos,total,vsJapan:f.vsJapan}}),signal:ac.signal});
+          body:JSON.stringify({mode:"invoice",lang:"ja",figures:{sleepMin:f.you,deficitMin:f.d,annualHours:f.annualH,invoiceDays:f.invoiceDays,vsJapan:f.vsJapan}}),signal:ac.signal});
         if(my!==reqId)return;
         if(r.ok){const j=await r.json();if(my===reqId&&j&&j.answer&&/[0-9]/.test(j.answer))reflect.innerHTML=sanLLM(j.answer);}
       }catch(e){/* keep template */}
