@@ -177,6 +177,14 @@
   .ledger .lab{margin-top:8px;font-size:11.5px;letter-spacing:.12em;color:var(--muted)}
   .ledger-cap{text-align:center;margin-top:20px;color:#d6d3c7;font-size:15px}
   .ledger-cap b{color:var(--jp);font-weight:700}
+  /* your night's invoice — turn the collective figure on the reader */
+  .inv .deck{max-width:34em;margin-left:auto;margin-right:auto}
+  .inv-ledger .inv-num{font-family:var(--serif);font-weight:800;font-size:clamp(30px,5.5vw,56px);color:var(--amber);font-variant-numeric:tabular-nums;line-height:1}
+  .inv-ledger .inv-num.red{color:var(--jp)}
+  .inv-reflect{margin-top:28px;max-width:38em;margin-left:auto;margin-right:auto;text-align:center;font-family:var(--serif);font-size:clamp(16px,2.3vw,20px);line-height:2;color:#e6e3d7;min-height:4em;transition:opacity .35s}
+  .inv-reflect.dim{opacity:.4}
+  .inv-reflect b{color:var(--amber);font-weight:800}
+  .inv-reflect .rank{color:var(--jp);font-weight:800;font-variant-numeric:tabular-nums}
 
   .closing{margin-top:72px;text-align:center;font-family:var(--serif);font-weight:800;font-size:clamp(26px,4.5vw,42px);color:var(--amber);line-height:2}
   .rx{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -390,6 +398,27 @@
   <p class="ledger-cap reveal">Japan is not "running a little short on sleep." Every year, every citizen has <b>about ten weeks of sleep deleted</b>.</p>
 
   <p class="closing reveal">Good night, Japan.<br><span>— the country where that is hardest to do.</span></p>
+</section>
+
+<section class="wrap inv">
+  <p class="kicker reveal">INVOICE &middot; IN YOUR NAME</p>
+  <h2 class="reveal">That invoice has <span class="am c">your name</span> on it too.</h2>
+  <p class="prose reveal">&ldquo;49 days&rdquo; is just one line on a nation&rsquo;s balance sheet. The bill always arrives at an individual. Tell us how long you sleep in a day, and we&rsquo;ll place you as <b style="color:var(--paper)">one more &ldquo;country&rdquo;</b> among the time-use data of 33 nations.</p>
+
+  <div class="deck reveal">
+    <label id="invLab" for="invRange" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Sleep per day</label>
+    <input type="range" id="invRange" min="240" max="600" step="15" value="420">
+    <output id="invOut" style="font-family:var(--serif);font-weight:800;font-size:22px;color:var(--amber);min-width:96px;text-align:right"></output>
+  </div>
+
+  <div class="ledger inv-ledger reveal">
+    <div><div class="inv-num" id="invD">&mdash;</div><div class="lab">gap vs OECD average<br>(min / day)</div></div>
+    <div><div class="inv-num" id="invH">&mdash;</div><div class="lab">sleep lost per year<br>(hours)</div></div>
+    <div><div class="inv-num red" id="invDays">&mdash;</div><div class="lab">your invoice<br>(= working days)</div></div>
+  </div>
+
+  <p class="inv-reflect reveal" id="invReflect" aria-live="polite"></p>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Computed against the OECD average sleep of 508 min/day. Working-day conversion = annual shortfall hours &divide; 8 hours (the same formula as Japan&rsquo;s average in the finale). Rank places you among the 33 countries in this piece &mdash; 34 in all. Because time-use surveys are diary-based, national averages run longer than self-reported &ldquo;clock-time&rdquo; sleep.</p></details>
 </section>
 
 <section class="wrap">
@@ -919,6 +948,58 @@ function render(){
 }
 range.oninput=render;
 render();
+})();
+
+/* ============ your night's invoice: the reader's personal bill ============ */
+(function(){
+  const range=$("#invRange"),out=$("#invOut"),reflect=$("#invReflect");
+  const elD=$("#invD"),elH=$("#invH"),elDays=$("#invDays");
+  if(!range||!reflect)return;
+  const LLM_ENDPOINT="https://arito--4d54ac928be111f190d11607ee4eb77e.web.val.run"; /* judging window only: invoice-mode prose. Falls back to the deterministic template on failure */
+  const AVG=AVG_SLEEP, JPN=DATA.find(d=>d.c==="Japan").sleep, total=DATA.length+1;
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const sanLLM=s=>esc(String(s).replace(/\*\*/g,"")).replace(/&lt;(\/?)b&gt;/g,"<$1b>").replace(/&lt;span class=&quot;rank&quot;&gt;/g,'<span class="rank">').replace(/&lt;\/span&gt;/g,"</span>");
+  function calc(you){
+    const d=Math.round(AVG-you);
+    const annualH=Math.round(Math.max(0,AVG-you)*365/60);
+    const invoiceDays=Math.round(Math.max(0,AVG-you)*365/60/8);
+    const rankPos=DATA.filter(x=>x.sleep>you).length+1;
+    const vsJapan=Math.round(you-JPN);
+    return {you,d,annualH,invoiceDays,rankPos,vsJapan};
+  }
+  function tmpl(f){
+    if(f.d<=0)
+      return `You sleep <b>${hm(f.you)}</b> a night. You clear the OECD average &mdash; in the country with the world&#39;s longest work hours, that alone is a quiet achievement. Ranked among 33 countries: <span class="rank">#${f.rankPos} of ${total}</span>. No invoice is coming.`;
+    const tail=f.vsJapan<0
+      ? `a night even shorter than Japan (${hm(JPN)}), the world&#39;s shortest, by ${Math.abs(f.vsJapan)} min`
+      : `longer than Japan, but still ${f.d} min short of the OECD average`;
+    return `You sleep <b>${hm(f.you)}</b> a night. That is <b>${f.d} min</b> below the OECD average, and about <b>${f.invoiceDays} working days</b> of sleep vanish every year. Ranked among 33 countries: <span class="rank">#${f.rankPos} of ${total}</span> &mdash; ${tail}. The prescription targets exactly this shortfall.`;
+  }
+  function renderInstant(f){
+    out.textContent=hm(f.you);
+    elD.textContent = f.d>0 ? "\u2212"+f.d : (f.d===0 ? "0" : "+"+Math.abs(f.d));
+    elH.textContent = String(f.annualH);
+    elDays.textContent = String(f.invoiceDays);
+    elDays.classList.toggle("red", f.invoiceDays>0);
+  }
+  let reqId=0, timer=null;
+  function settle(f){
+    reflect.classList.remove("dim");
+    reflect.innerHTML=tmpl(f);
+    if(!LLM_ENDPOINT)return;
+    const my=++reqId;
+    (async()=>{
+      try{
+        const ac=new AbortController();setTimeout(()=>ac.abort(),6000);
+        const r=await fetch(LLM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({mode:"invoice",lang:"en",figures:{sleepMin:f.you,deficitMin:f.d,annualHours:f.annualH,invoiceDays:f.invoiceDays,rankPos:f.rankPos,total,vsJapan:f.vsJapan}}),signal:ac.signal});
+        if(my!==reqId)return;
+        if(r.ok){const j=await r.json();if(my===reqId&&j&&j.answer&&/[0-9]/.test(j.answer))reflect.innerHTML=sanLLM(j.answer);}
+      }catch(e){/* keep template */}
+    })();
+  }
+  range.oninput=()=>{const f=calc(+range.value);renderInstant(f);reflect.classList.add("dim");clearTimeout(timer);timer=setTimeout(()=>settle(f),650);};
+  (function(){const f=calc(+range.value);renderInstant(f);reflect.classList.remove("dim");reflect.innerHTML=tmpl(f);})();
 })();
 
 /* ============ a11y: sync aria-pressed on toggle buttons ============ */
