@@ -123,7 +123,7 @@ The scatterplots for the two rejected themes + one rejected expansion, and for t
 ![Rejected 3](evidence/fig_rejected_03_happiness_unpaidgap.png)
 ![Adopted](evidence/fig_adopted_04_work_sleep.png)
 
-### 7-2. Excerpts from the real logs (`evidence/実ログ抜粋.md`)
+### 7-2. Excerpts from the real logs (`evidence/real_log_excerpts.md`)
 
 Seven unedited excerpts from the conversation history. The division of labor — human = decision-making (adjudicating the 4-way choice / approving designs / tonal calls), AI = validation, implementation, self-audit — is visible in unembellished logs:
 
