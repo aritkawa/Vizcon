@@ -267,6 +267,7 @@
   <div class="cue">SCROLL</div>
 </header>
 
+
 <section class="wrap">
   <p class="kicker reveal">ACT I · TWO RANKINGS</p>
   <h2 class="reveal">Sort by who works most.<br>Then re-sort by <span class="jp">who sleeps least</span>.</h2>
@@ -291,15 +292,7 @@
 </section>
 
 <section class="wrap">
-  <p class="kicker reveal">ACT I · THE TWIST</p>
-  <h2 class="reveal">Every other line crosses. <span class="jp">Japan's never moves.</span></h2>
-  <p class="prose reveal">Left: ranked by work. Right: ranked by lack of sleep. Touch a country to bring its line forward.</p>
-  <div class="slope-box reveal" id="slope"></div>
-  <p class="sl-hint reveal"><b>Hover / tap</b> a name or line to compare. Tap again to release.</p>
-</section>
-
-<section class="wrap">
-  <p class="kicker reveal">REBUTTAL · THE AVERAGE LIES</p>
+  <p class="kicker reveal">ACT II · THE MIRAGE OF THE AVERAGE</p>
   <h2 class="reveal">&ldquo;The Japanese don&rsquo;t work more than <span class="am c">Americans</span> anymore.&rdquo;</h2>
   <p class="prose reveal">&hellip;That is what the official statistics say. Annual working hours: Japan <b style="color:var(--paper)">1,654</b>, the United States <b style="color:var(--paper)">1,789</b> (2023) &mdash; Japan&rsquo;s year is 135 hours shorter. Was everything above an illusion? No. <b style="color:var(--paper)">The average blends two Japans into one number and dilutes them.</b> The more short-hour workers join the workforce, the lower the average falls &mdash; and the overworked core disappears from view.</p>
   <p class="prose reveal">So stop blending. Count the <b style="color:var(--paper)">share of workers putting in 49+ hours a week</b> &mdash; and the ranking flips back.</p>
@@ -317,7 +310,7 @@
 </section>
 
 <section class="wrap">
-  <p class="kicker reveal">ACT II · ANATOMY OF 24 HOURS</p>
+  <p class="kicker reveal">ACT II · WHERE THE TIME WENT</p>
   <h2 class="reveal">So where did the time <span class="am">actually go?</span></h2>
   <p class="prose reveal">We split the 1,440 minutes of a day into nine activities and lined up any two countries of your choice. <b style="color:var(--paper)">Touch any segment</b> to see both countries' minutes — and the top country's world rank for that activity. Change either country with the dropdowns.</p>
 
@@ -343,24 +336,6 @@
   <div class="chips reveal" id="chips"></div>
   <p class="caption reveal"><b>The hours flow into offices, roads and bathrooms — and are withdrawn from nights, dinner tables and friendships.</b> Which activities top the world, and which sink to the bottom? Touch the bands and buttons to find out for yourself.</p>
   <details class="src"><summary>Sources &amp; notes</summary><p>"Study" = classes and school. "Grooming &amp; care" = bathing, dressing, medical visits. "Housework &amp; care" = all unpaid work (chores, shopping, child &amp; adult care, volunteering). Country totals are normalized to exactly 1,440 minutes to absorb source rounding.</p></details>
-</section>
-
-<section class="wrap">
-  <p class="kicker reveal">INTERLUDE · CLASH OF EXTREMES</p>
-  <h2 class="reveal">The country that sleeps most, <span class="jp">and the one that sleeps least.</span></h2>
-  <p class="prose reveal">South Africa sleeps 553 minutes; Japan, 444. The gap is <b style="color:var(--paper)">109 minutes</b>. Where is that time carved out from? We reconcile both countries' 24-hour ledgers, item by item. You can change both sides of the matchup.</p>
-  <div class="deck reveal">
-    <label for="vsSelL" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Contender</label>
-    <select id="vsSelL"></select>
-    <label for="vsSel" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Opponent</label>
-    <select id="vsSel"></select>
-    <div class="verdict" id="vsHead" aria-live="polite"></div>
-  </div>
-  <div class="vs reveal">
-    <div class="vs-hd"><span id="vsHdL"></span><span></span><span id="vsHdR"></span></div>
-    <div id="vsRows"></div>
-  </div>
-  <p class="note reveal" id="vsNote"></p>
 </section>
 
 <section class="wrap">
@@ -423,21 +398,6 @@
 </section>
 
 <section class="wrap">
-  <p class="kicker reveal">PRESCRIPTION · YOU CAN'T BUY TIME. YOU CAN RECLAIM QUALITY.</p>
-  <h2 class="reveal">Win back the stolen night with <span class="am u">quality, not quantity</span>.</h2>
-  <p class="prose reveal">Work and chores fix how much time you can spare. <b style="color:var(--paper)">So aim not at the quantity of sleep, but at its quality.</b> The same seven hours recover you differently if they run deep. Sleep science keeps backing three reliable levers. Set one target bedtime, and the countdown for tonight appears.</p>
-
-  <div class="deck reveal">
-    <label id="rxLab" for="rxRange" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Target bedtime</label>
-    <input type="range" id="rxRange" min="1230" max="1560" step="15" value="1410">
-    <output id="rxOut" style="font-family:var(--serif);font-weight:800;font-size:22px;color:var(--amber);min-width:78px;text-align:right"></output>
-  </div>
-
-  <div class="rx reveal" id="rxCards"></div>
-  <details class="src"><summary>Sources &amp; notes</summary><p>Sources: widely supported findings in sleep science (circadian light entrainment / pre-sleep bathing and core body temperature: Haghayegh et al. 2019 systematic meta-analysis / caffeine and sleep: Drake et al. 2013). Times are countdown guides; the optimum varies by individual.</p></details>
-</section>
-
-<section class="wrap">
   <p class="kicker reveal">EPILOGUE · ASK THE DATA</p>
   <h2 class="reveal">Still have a question <span class="am">left over?</span></h2>
   <p class="prose reveal">33 countries × 9 activities × 2 genders. What you've seen is a fraction of the diary data. Ask for the rest directly — <b style="color:var(--paper)">an AI answers, grounded only in the data on this page</b> (it won't invent numbers). When it's busy, it falls back to a built-in calculator that returns the same answers offline.</p>
@@ -462,6 +422,48 @@
   <div class="reveal" id="tl" style="margin-top:26px"></div>
   <p class="caption reveal" id="tlCap" aria-live="polite" style="min-height:3em"></p>
   <details class="src"><summary>Sources &amp; notes</summary><p>Japan's snapshot is from 2016 (based on the national Survey on Time Use and Leisure Activities). Diary-based measurement — definitions differ from annual-hours labour statistics.</p></details>
+</section>
+
+<!-- ===== CUT for reorg mockup (hidden; JS left intact so no null-refs). Delete these + their JS IIFEs in the final version. ===== -->
+<section class="wrap" style="display:none" data-cut="reorg-mockup">
+  <p class="kicker reveal">ACT I · THE TWIST</p>
+  <h2 class="reveal">Every other line crosses. <span class="jp">Japan's never moves.</span></h2>
+  <p class="prose reveal">Left: ranked by work. Right: ranked by lack of sleep. Touch a country to bring its line forward.</p>
+  <div class="slope-box reveal" id="slope"></div>
+  <p class="sl-hint reveal"><b>Hover / tap</b> a name or line to compare. Tap again to release.</p>
+</section>
+
+<section class="wrap" style="display:none" data-cut="reorg-mockup">
+  <p class="kicker reveal">INTERLUDE · CLASH OF EXTREMES</p>
+  <h2 class="reveal">The country that sleeps most, <span class="jp">and the one that sleeps least.</span></h2>
+  <p class="prose reveal">South Africa sleeps 553 minutes; Japan, 444. The gap is <b style="color:var(--paper)">109 minutes</b>. Where is that time carved out from? We reconcile both countries' 24-hour ledgers, item by item. You can change both sides of the matchup.</p>
+  <div class="deck reveal">
+    <label for="vsSelL" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Contender</label>
+    <select id="vsSelL"></select>
+    <label for="vsSel" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Opponent</label>
+    <select id="vsSel"></select>
+    <div class="verdict" id="vsHead" aria-live="polite"></div>
+  </div>
+  <div class="vs reveal">
+    <div class="vs-hd"><span id="vsHdL"></span><span></span><span id="vsHdR"></span></div>
+    <div id="vsRows"></div>
+  </div>
+  <p class="note reveal" id="vsNote"></p>
+</section>
+
+<section class="wrap" style="display:none" data-cut="reorg-mockup">
+  <p class="kicker reveal">PRESCRIPTION · YOU CAN'T BUY TIME. YOU CAN RECLAIM QUALITY.</p>
+  <h2 class="reveal">Win back the stolen night with <span class="am u">quality, not quantity</span>.</h2>
+  <p class="prose reveal">Work and chores fix how much time you can spare. <b style="color:var(--paper)">So aim not at the quantity of sleep, but at its quality.</b> The same seven hours recover you differently if they run deep. Sleep science keeps backing three reliable levers. Set one target bedtime, and the countdown for tonight appears.</p>
+
+  <div class="deck reveal">
+    <label id="rxLab" for="rxRange" style="font-size:12px;color:var(--muted);letter-spacing:.08em">Target bedtime</label>
+    <input type="range" id="rxRange" min="1230" max="1560" step="15" value="1410">
+    <output id="rxOut" style="font-family:var(--serif);font-weight:800;font-size:22px;color:var(--amber);min-width:78px;text-align:right"></output>
+  </div>
+
+  <div class="rx reveal" id="rxCards"></div>
+  <details class="src"><summary>Sources &amp; notes</summary><p>Sources: widely supported findings in sleep science (circadian light entrainment / pre-sleep bathing and core body temperature: Haghayegh et al. 2019 systematic meta-analysis / caffeine and sleep: Drake et al. 2013). Times are countdown guides; the optimum varies by individual.</p></details>
 </section>
 
 <footer class="wrap">

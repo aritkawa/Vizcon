@@ -267,6 +267,7 @@
   <div class="cue">SCROLL</div>
 </header>
 
+
 <section class="wrap">
   <p class="kicker reveal">第一幕 · 2つのランキング</p>
   <h2 class="reveal">働いている順に並べる。<br>次に、<span class="jp">眠っていない順</span>に並べ替える。</h2>
@@ -291,15 +292,7 @@
 </section>
 
 <section class="wrap">
-  <p class="kicker reveal">第一幕 · ねじれ</p>
-  <h2 class="reveal">他の国の線は交差する。<span class="jp">日本の線だけ、動かない。</span></h2>
-  <p class="prose reveal">左は「働いている順」、右は「眠っていない順」。気になる国に触れると線が浮かび上がります。</p>
-  <div class="slope-box reveal" id="slope"></div>
-  <p class="sl-hint reveal">国名や線に <b>ホバー / タップ</b> で比較。もう一度タップで解除。</p>
-</section>
-
-<section class="wrap">
-  <p class="kicker reveal">反論 · 平均は嘘をつく</p>
+  <p class="kicker reveal">第二幕 · 平均という蜃気楼</p>
   <h2 class="reveal">「日本人はもう、<span class="am c">アメリカ人ほど働いていない</span>」</h2>
   <p class="prose reveal">…公式統計は、そう言います。年間労働時間は日本 <b style="color:var(--paper)">1,654時間</b>、アメリカ <b style="color:var(--paper)">1,789時間</b>(2023年) — 日本のほうが135時間も短い。ここまでの話は幻だったのでしょうか。いいえ。<b style="color:var(--paper)">平均という数字が、二つの日本を混ぜて薄めている</b>のです。短時間で働く人が増えるほど平均は下がり、働きすぎの中核は見えなくなる。</p>
   <p class="prose reveal">では、混ぜるのをやめましょう。<b style="color:var(--paper)">週49時間以上働く人の割合</b>を数え直すと — 順位は反転します。</p>
@@ -317,7 +310,7 @@
 </section>
 
 <section class="wrap">
-  <p class="kicker reveal">第二幕 · 24時間の解剖</p>
+  <p class="kicker reveal">第二幕 · 時間はどこへ消えた</p>
   <h2 class="reveal">その時間は、<span class="am">どこへ消えたのか。</span></h2>
   <p class="prose reveal">1440分の使いみちを9つに割って、気になる2カ国を上下に並べました。<b style="color:var(--paper)">帯に触れる</b>と両者の数字と、上段の国の世界順位が表示されます。両方の国をプルダウンで自由に変更できます。</p>
 
@@ -343,24 +336,6 @@
   <div class="chips reveal" id="chips"></div>
   <p class="caption reveal"><b>時間は会社と道路と洗面所に流れ込み、夜と食卓と友人から引き落とされていく。</b>どの活動が世界の頂点に立ち、どれが最下位に沈むのか — その顔ぶれは、帯とボタンに触れればすぐに分かります。</p>
   <details class="src"><summary>出典・注記</summary><p>「学び」は授業・学校、「身支度・ケア」は入浴・身支度・通院など、「家事・育児」は無償労働全般(家事・買い物・育児・介護・ボランティア)。出典の端数を吸収するため各国とも合計がちょうど1440分になるよう正規化しています。</p></details>
-</section>
-
-<section class="wrap">
-  <p class="kicker reveal">幕間 · 両極対決</p>
-  <h2 class="reveal">世界一眠る国と、<span class="jp">世界一眠らない国。</span></h2>
-  <p class="prose reveal">睡眠553分の南アフリカと、444分の日本。差は<b style="color:var(--paper)">109分</b>。その109分がどの項目から捻出されているのか、両国の24時間の帳簿を突き合わせます。対戦カードは両側とも自由に変更できます。</p>
-  <div class="deck reveal">
-    <label for="vsSelL" style="font-size:12px;color:var(--muted);letter-spacing:.08em">この国と</label>
-    <select id="vsSelL"></select>
-    <label for="vsSel" style="font-size:12px;color:var(--muted);letter-spacing:.08em">対戦相手</label>
-    <select id="vsSel"></select>
-    <div class="verdict" id="vsHead" aria-live="polite"></div>
-  </div>
-  <div class="vs reveal">
-    <div class="vs-hd"><span id="vsHdL"></span><span></span><span id="vsHdR"></span></div>
-    <div id="vsRows"></div>
-  </div>
-  <p class="note reveal" id="vsNote"></p>
 </section>
 
 <section class="wrap">
@@ -423,21 +398,6 @@
 </section>
 
 <section class="wrap">
-  <p class="kicker reveal">処方箋 · 時間は増やせない。質は取り戻せる。</p>
-  <h2 class="reveal">削られた夜は、量ではなく<span class="am u">&ldquo;質&rdquo;</span>で取り戻す。</h2>
-  <p class="prose reveal">仕事も家事も、削れない可処分時間は決まっている。<b style="color:var(--paper)">だから狙うのは睡眠の「量」ではなく「質」。</b>同じ7時間でも、深く眠れれば回復は変わる。睡眠研究が繰り返し支持してきた、確実な3つのレバーがあります。就寝の目標時刻を決めるだけで、今夜からの逆算が出ます。</p>
-
-  <div class="deck reveal">
-    <label id="rxLab" for="rxRange" style="font-size:12px;color:var(--muted);letter-spacing:.08em">就寝の目標時刻</label>
-    <input type="range" id="rxRange" min="1230" max="1560" step="15" value="1410">
-    <output id="rxOut" style="font-family:var(--serif);font-weight:800;font-size:22px;color:var(--amber);min-width:78px;text-align:right"></output>
-  </div>
-
-  <div class="rx reveal" id="rxCards"></div>
-  <details class="src"><summary>出典・注記</summary><p>出典: 睡眠研究で広く支持される知見(体内時計と光の同調 / 就寝前入浴と深部体温: Haghayegh ら 2019 系統的メタ分析 / カフェインの睡眠影響: Drake ら 2013)。時刻は逆算の目安で、最適値には個人差があります。</p></details>
-</section>
-
-<section class="wrap">
   <p class="kicker reveal">エピローグ · データに聞く</p>
   <h2 class="reveal">まだ、聞きたいことが<span class="am">残っていませんか。</span></h2>
   <p class="prose reveal">33カ国 × 9項目 × 男女。ここまで見せたのは日記データのほんの一部です。残りは直接聞いてください — <b style="color:var(--paper)">AIがこのページ内のデータだけを根拠に</b>答えます(数字を勝手には作りません)。混み合っているときは、同じデータを内蔵の計算機で集計する定型回答に自動で切り替わります。</p>
@@ -462,6 +422,48 @@
   <div class="reveal" id="tl" style="margin-top:26px"></div>
   <p class="caption reveal" id="tlCap" aria-live="polite" style="min-height:3em"></p>
   <details class="src"><summary>出典・注記</summary><p>日本は2016年(総務省「社会生活基本調査」ベース)。日記式の測定のため、年間総労働時間などの労働統計とは定義が異なります。</p></details>
+</section>
+
+<!-- ===== CUT for reorg mockup (hidden; JS intact) ===== -->
+<section class="wrap" style="display:none" data-cut="reorg-mockup">
+  <p class="kicker reveal">第一幕 · ねじれ</p>
+  <h2 class="reveal">他の国の線は交差する。<span class="jp">日本の線だけ、動かない。</span></h2>
+  <p class="prose reveal">左は「働いている順」、右は「眠っていない順」。気になる国に触れると線が浮かび上がります。</p>
+  <div class="slope-box reveal" id="slope"></div>
+  <p class="sl-hint reveal">国名や線に <b>ホバー / タップ</b> で比較。もう一度タップで解除。</p>
+</section>
+
+<section class="wrap" style="display:none" data-cut="reorg-mockup">
+  <p class="kicker reveal">幕間 · 両極対決</p>
+  <h2 class="reveal">世界一眠る国と、<span class="jp">世界一眠らない国。</span></h2>
+  <p class="prose reveal">睡眠553分の南アフリカと、444分の日本。差は<b style="color:var(--paper)">109分</b>。その109分がどの項目から捻出されているのか、両国の24時間の帳簿を突き合わせます。対戦カードは両側とも自由に変更できます。</p>
+  <div class="deck reveal">
+    <label for="vsSelL" style="font-size:12px;color:var(--muted);letter-spacing:.08em">この国と</label>
+    <select id="vsSelL"></select>
+    <label for="vsSel" style="font-size:12px;color:var(--muted);letter-spacing:.08em">対戦相手</label>
+    <select id="vsSel"></select>
+    <div class="verdict" id="vsHead" aria-live="polite"></div>
+  </div>
+  <div class="vs reveal">
+    <div class="vs-hd"><span id="vsHdL"></span><span></span><span id="vsHdR"></span></div>
+    <div id="vsRows"></div>
+  </div>
+  <p class="note reveal" id="vsNote"></p>
+</section>
+
+<section class="wrap" style="display:none" data-cut="reorg-mockup">
+  <p class="kicker reveal">処方箋 · 時間は増やせない。質は取り戻せる。</p>
+  <h2 class="reveal">削られた夜は、量ではなく<span class="am u">&ldquo;質&rdquo;</span>で取り戻す。</h2>
+  <p class="prose reveal">仕事も家事も、削れない可処分時間は決まっている。<b style="color:var(--paper)">だから狙うのは睡眠の「量」ではなく「質」。</b>同じ7時間でも、深く眠れれば回復は変わる。睡眠研究が繰り返し支持してきた、確実な3つのレバーがあります。就寝の目標時刻を決めるだけで、今夜からの逆算が出ます。</p>
+
+  <div class="deck reveal">
+    <label id="rxLab" for="rxRange" style="font-size:12px;color:var(--muted);letter-spacing:.08em">就寝の目標時刻</label>
+    <input type="range" id="rxRange" min="1230" max="1560" step="15" value="1410">
+    <output id="rxOut" style="font-family:var(--serif);font-weight:800;font-size:22px;color:var(--amber);min-width:78px;text-align:right"></output>
+  </div>
+
+  <div class="rx reveal" id="rxCards"></div>
+  <details class="src"><summary>出典・注記</summary><p>出典: 睡眠研究で広く支持される知見(体内時計と光の同調 / 就寝前入浴と深部体温: Haghayegh ら 2019 系統的メタ分析 / カフェインの睡眠影響: Drake ら 2013)。時刻は逆算の目安で、最適値には個人差があります。</p></details>
 </section>
 
 <footer class="wrap">
